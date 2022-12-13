@@ -1,6 +1,9 @@
 import pygame
 
 
+CENTER: int = 0
+
+
 class UIElement:
     rect: pygame.Rect
     background_color: tuple[int, int, int]
