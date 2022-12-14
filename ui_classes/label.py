@@ -79,5 +79,3 @@ class TextLabel(UIElement):
         text_rect = get_rect(
             x, y, *self._rendered_text.get_size(), self.text_anchor)
         surface.blit(self._rendered_text, text_rect)
-
-        # surface.blit(self._rendered_text,
