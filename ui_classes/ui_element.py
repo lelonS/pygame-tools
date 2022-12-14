@@ -43,6 +43,29 @@ def get_rect(x, y, width, height, anchor=TOP_LEFT):
         raise ValueError('Invalid anchor position')
 
 
+def get_point_in_rect(rect: pygame.Rect, anchor: int = TOP_LEFT):
+    if anchor == TOP_LEFT:
+        return rect.topleft
+    elif anchor == TOP_RIGHT:
+        return rect.topright
+    elif anchor == BOTTOM_LEFT:
+        return rect.bottomleft
+    elif anchor == BOTTOM_RIGHT:
+        return rect.bottomright
+    elif anchor == MID_TOP:
+        return rect.midtop
+    elif anchor == MID_LEFT:
+        return rect.midleft
+    elif anchor == MID_BOTTOM:
+        return rect.midbottom
+    elif anchor == MID_RIGHT:
+        return rect.midright
+    elif anchor == CENTER:
+        return rect.center
+    else:
+        raise ValueError('Invalid anchor position')
+
+
 class UIElement:
     rect: pygame.Rect
     background_color: tuple[int, int, int]
@@ -56,6 +79,8 @@ class UIElement:
         self.rect = rect
         self.background_color = background_color
         self.draw_background = draw_background
+
+        print(self.rect, self.background_color, self.draw_background)
 
     def draw(self, surface: pygame.Surface):
         if self.draw_background:
