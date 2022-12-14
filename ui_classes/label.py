@@ -20,13 +20,15 @@ class TextLabel(UIElement):
                  rect: pygame.Rect,
                  text: str,
                  font: pygame.font.Font,
-                 text_color: tuple[int, int, int] = (255, 255, 255),
-                 background_color: tuple[int, int, int] = (0, 0, 0),
-                 draw_background: bool = True,
-                 anchor: int = TOP_LEFT,
-                 text_anchor: int = CENTER,
-                 scale_text: bool = True,
-                 scale_rect: bool = False):
+                 **kwargs):
+
+        anchor = kwargs.get("anchor", TOP_LEFT)
+        background_color = kwargs.get("background_color", (0, 0, 0))
+        draw_background = kwargs.get("draw_background", True)
+        text_color = kwargs.get("text_color", (255, 255, 255))
+        scale_text = kwargs.get("scale_text", True)
+        scale_rect = kwargs.get("scale_rect", False)
+        text_anchor = kwargs.get("text_anchor", CENTER)
 
         r = get_rect(rect.x, rect.y, rect.width, rect.height, anchor)
         super().__init__(r, background_color, draw_background)
