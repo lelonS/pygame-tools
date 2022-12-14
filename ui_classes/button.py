@@ -33,11 +33,9 @@ class Button(UIElement):
 
     def __init__(self, rect: pygame.Rect, **kwargs):
         anchor = kwargs.get("anchor", TOP_LEFT)
-        background_color = kwargs.get("background_color", (0, 0, 0))
-        draw_background = kwargs.get("draw_background", True)
 
         r = get_rect(rect.x, rect.y, rect.width, rect.height, anchor)
-        super().__init__(r, background_color, draw_background)
+        super().__init__(r, **kwargs)
 
         self._hovered = False
         self.on_click = kwargs.get("on_click", None)
@@ -50,12 +48,12 @@ class Button(UIElement):
             if self.rect.collidepoint(event.pos):
                 if not self._hovered:
                     self._hovered = True
-                    if self.on_hover:
+                    if self.hover_behavior:
                         self.hover_behavior.on_hover(self)
             else:
                 if self._hovered:
                     self._hovered = False
-                    if self.on_unhover:
+                    if self.hover_behavior:
                         self.hover_behavior.on_unhover(self)
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if self.rect.collidepoint(event.pos):
@@ -80,6 +78,7 @@ class TextButton(Button):
         self.label = TextLabel(rect, text, font, text_color=text_color,
                                scale_text=scale_text, scale_rect=scale_rect,
                                text_anchor=text_anchor)
+        print(self.background_color)
 
     def update(self, event: pygame.event.Event):
         super().update(event)

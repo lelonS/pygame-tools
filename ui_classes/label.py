@@ -24,14 +24,14 @@ class TextLabel(UIElement):
 
         anchor = kwargs.get("anchor", TOP_LEFT)
         background_color = kwargs.get("background_color", (0, 0, 0))
-        draw_background = kwargs.get("draw_background", True)
+        draw_background = kwargs.get("draw_background", False)
         text_color = kwargs.get("text_color", (255, 255, 255))
         scale_text = kwargs.get("scale_text", True)
         scale_rect = kwargs.get("scale_rect", False)
         text_anchor = kwargs.get("text_anchor", CENTER)
 
         r = get_rect(rect.x, rect.y, rect.width, rect.height, anchor)
-        super().__init__(r, background_color, draw_background)
+        super().__init__(r, background_color=background_color, draw_background=draw_background)
 
         self._text = text
         self._font = font
