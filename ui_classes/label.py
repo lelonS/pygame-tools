@@ -3,6 +3,7 @@ from ui_classes.ui_element import UIElement, get_rect, get_point_in_rect,\
     TOP_LEFT, CENTER
 
 # TODO - USE CORRECT FONT WHEN RESIZING TO FIT RECT
+# TODO - USE KWARGS TO SET DEFAULTS
 
 
 class TextLabel(UIElement):
