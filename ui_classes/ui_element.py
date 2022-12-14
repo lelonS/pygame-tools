@@ -70,23 +70,27 @@ class UIElement:
     rect: pygame.Rect
     background_color: tuple[int, int, int]
     draw_background: bool
+    border_color: tuple[int, int, int]
+    border_width: int
 
     def __init__(self,
                  rect: pygame.Rect,
                  **kwargs):
 
-        background_color = kwargs.get("background_color", (0, 0, 0))
-        draw_background = kwargs.get("draw_background", True)
-
         self.rect = rect
-        self.background_color = background_color
-        self.draw_background = draw_background
+        self.background_color = kwargs.get("background_color", (0, 0, 0))
+        self.draw_background = kwargs.get("draw_background", True)
+        self.border_color = kwargs.get("border_color", (0, 0, 0))
+        self.border_width = kwargs.get("border_width", 0)
 
         print(self.rect, self.background_color, self.draw_background)
 
     def draw(self, surface: pygame.Surface):
         if self.draw_background:
             pygame.draw.rect(surface, self.background_color, self.rect)
+        if self.border_width > 0:
+            pygame.draw.rect(surface, self.border_color,
+                             self.rect, self.border_width)
 
     def update(self, event: pygame.event.Event):
         pass
