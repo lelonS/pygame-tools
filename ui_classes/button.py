@@ -4,10 +4,10 @@ from ui_classes.label import TextLabel
 
 
 class HoverBehavior:
-    def on_hover(self, button):
+    def on_hover(self, button: 'Button'):
         pass
 
-    def on_unhover(self, button):
+    def on_unhover(self, button: 'Button'):
         pass
 
 
@@ -15,14 +15,14 @@ class HoverBorderColor(HoverBehavior):
     og_border_color: tuple[int, int, int]
     hover_border_color: tuple[int, int, int]
 
-    def __init__(self, hover_border_color):
+    def __init__(self, hover_border_color: tuple[int, int, int]):
         self.hover_border_color = hover_border_color
 
-    def on_hover(self, button):
+    def on_hover(self, button: 'Button'):
         self.og_border_color = button.border_color
         button.border_color = self.hover_border_color
 
-    def on_unhover(self, button):
+    def on_unhover(self, button: 'Button'):
         button.border_color = self.og_border_color
 
 
