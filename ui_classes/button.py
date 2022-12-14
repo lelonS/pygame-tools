@@ -29,16 +29,16 @@ class Button(UIElement):
                 if not self._hovered:
                     self._hovered = True
                     if self.on_hover:
-                        self.on_hover()
+                        self.on_hover(self)
             else:
                 if self._hovered:
                     self._hovered = False
                     if self.on_unhover:
-                        self.on_unhover()
+                        self.on_unhover(self)
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if self.rect.collidepoint(event.pos):
                 if self.on_click:
-                    self.on_click()
+                    self.on_click(self)
 
     def draw(self, surface: pygame.Surface):
         super().draw(surface)
