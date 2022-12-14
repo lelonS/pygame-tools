@@ -42,3 +42,27 @@ class Button(UIElement):
 
     def draw(self, surface: pygame.Surface):
         super().draw(surface)
+
+
+class TextButton(Button):
+    label: TextLabel
+
+    def __init__(self, rect: pygame.Rect, text: str, font: pygame.font.Font, **kwargs):
+        super().__init__(rect, **kwargs)
+
+        text_color = kwargs.get("text_color", (255, 255, 255))
+        scale_text = kwargs.get("scale_text", True)
+        scale_rect = kwargs.get("scale_rect", False)
+        text_anchor = kwargs.get("text_anchor", CENTER)
+
+        self.label = TextLabel(rect, text, font, text_color=text_color,
+                               scale_text=scale_text, scale_rect=scale_rect,
+                               text_anchor=text_anchor)
+
+    def update(self, event: pygame.event.Event):
+        super().update(event)
+        self.label.update(event)
+
+    def draw(self, surface: pygame.Surface):
+        super().draw(surface)
+        self.label.draw(surface)
