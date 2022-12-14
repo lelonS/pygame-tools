@@ -73,8 +73,10 @@ class UIElement:
 
     def __init__(self,
                  rect: pygame.Rect,
-                 background_color: tuple[int, int, int] = (0, 0, 0),
-                 draw_background: bool = True):
+                 **kwargs):
+
+        background_color = kwargs.get("background_color", (0, 0, 0))
+        draw_background = kwargs.get("draw_background", True)
 
         self.rect = rect
         self.background_color = background_color
