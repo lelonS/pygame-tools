@@ -28,7 +28,10 @@ class TextBox(TextButton):
                                scale_text=scale_text, scale_rect=scale_rect,
                                text_anchor=text_anchor)
 
-        self.default_label = TextLabel(rect, text, font, text_color=text_color,
+        self.default_color = kwargs.get("default_color", text_color)
+        self.default_text = kwargs.get("default_text", text)
+
+        self.default_label = TextLabel(rect, self.default_text, font, text_color=self.default_color,
                                        scale_text=scale_text, scale_rect=scale_rect,
                                        text_anchor=text_anchor)
 
