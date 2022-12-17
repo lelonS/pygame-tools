@@ -78,7 +78,6 @@ class TextButton(Button):
         self.label = TextLabel(rect, text, font, text_color=text_color,
                                scale_text=scale_text, scale_rect=scale_rect,
                                text_anchor=text_anchor)
-        print(self.background_color)
 
     def update(self, event: pygame.event.Event):
         super().update(event)
