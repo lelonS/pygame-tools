@@ -47,7 +47,7 @@ class TextLabel(UIElement):
         if self.scale_text:
             self.fit_text_to_rect()
         if self.scale_rect:
-            self.rect.size = self._rendered_text.get_size()
+            self.rect = self._rendered_text.get_rect()
 
     def fit_text_to_rect(self):
         w, h = self._rendered_text.get_size()
