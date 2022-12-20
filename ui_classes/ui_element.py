@@ -75,6 +75,8 @@ class UIElementBehavior:
 
 
 class BorderBehavior(UIElementBehavior):
+    color: tuple[int, int, int]
+    width: int
     original_border_color: tuple[int, int, int]
     original_border_width: int
 
