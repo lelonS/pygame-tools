@@ -80,17 +80,23 @@ class BorderBehavior(UIElementBehavior):
     original_border_color: tuple[int, int, int]
     original_border_width: int
 
+    has_entered: bool
+
     def __init__(self, color: tuple[int, int, int], width: int):
         self.color = color
         self.width = width
+        self.has_entered = False
 
     def enter(self, sender: 'UIElement'):
+        self.has_entered = True
         self.original_border_color = sender.border_color
         self.original_border_width = sender.border_width
         sender.border_color = self.color
         sender.border_width = self.width
 
     def exit(self, sender: 'UIElement'):
+        if not self.has_entered:
+            return
         sender.border_color = self.original_border_color
         sender.border_width = self.original_border_width
 

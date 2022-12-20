@@ -79,6 +79,8 @@ class TextLabel(UIElement):
 
     def draw(self, surface: pygame.Surface):
         super().draw(surface)
+        if self._rendered_text is None:
+            return
         x, y = get_point_in_rect(self.rect, self.text_anchor)
         text_rect = get_rect(
             x, y, *self._rendered_text.get_size(), self.text_anchor)
@@ -98,9 +100,11 @@ class MultiLineTextLabel(TextLabel):
         super().__init__(rect, text, font, **kwargs)
 
         self.line_height = kwargs.get("line_height", 0)
+        self._rendered_text = None
         self._rendered_texts = []
+        self.render_texts()
 
-    def render_text(self):
+    def render_texts(self):
         self._rendered_texts = []
         for line in self._text.splitlines():
             text = self._font.render(line, True, self._text_color)

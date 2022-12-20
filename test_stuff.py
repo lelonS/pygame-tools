@@ -1,6 +1,6 @@
 import pygame
-from ui_classes.ui_element import UIElement, BorderBehavior
-from ui_classes.label import TextLabel
+from ui_classes.ui_element import UIElement, BorderBehavior, MID_TOP
+from ui_classes.label import TextLabel, MultiLineTextLabel
 from ui_classes.button import TextButton
 from ui_classes.text_box import TextBox
 
@@ -46,6 +46,17 @@ text_box = TextBox(pygame.Rect(10, 220, 200, 200),
                    focus_behavior=BorderBehavior((0, 255, 0), 5))
 
 ui_elements.append(text_box)
+
+# Create MultiLineTextLabel
+multi_line_text_label = MultiLineTextLabel(pygame.Rect(220, 220, 200, 200),
+                                           "Hello World\nNew Line\nAnother Line\n\nThe double newline",
+                                           pygame.font.Font(None, 20),
+                                           background_color=(124, 124, 124),
+                                           draw_background=True,
+                                           line_height=20,
+                                           text_anchor=MID_TOP,
+                                           scale_text=False)
+ui_elements.append(multi_line_text_label)
 
 # Game loop
 running = True
