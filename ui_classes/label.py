@@ -83,3 +83,37 @@ class TextLabel(UIElement):
         text_rect = get_rect(
             x, y, *self._rendered_text.get_size(), self.text_anchor)
         surface.blit(self._rendered_text, text_rect)
+
+
+class MultiLineTextLabel(TextLabel):
+    _rendered_texts: list[pygame.Surface]
+    line_height: int
+
+    def __init__(self,
+                 rect: pygame.Rect,
+                 text: str,
+                 font: pygame.font.Font,
+                 **kwargs):
+
+        super().__init__(rect, text, font, **kwargs)
+
+        self.line_height = kwargs.get("line_height", 0)
+        self._rendered_texts = []
+
+    def render_text(self):
+        self._rendered_texts = []
+        for line in self._text.splitlines():
+            text = self._font.render(line, True, self._text_color)
+            self._rendered_texts.append(text)
+        # TODO - SCALE TEXT TO FIT RECT
+
+    def fit_rect_to_text(self):
+        pass
+
+    def draw(self, surface: pygame.Surface):
+        super().draw(surface)
+        for i, text in enumerate(self._rendered_texts):
+            x, y = get_point_in_rect(self.rect, self.text_anchor)
+            text_rect = get_rect(
+                x, y + (i * self.line_height), *text.get_size(), self.text_anchor)
+            surface.blit(text, text_rect)
