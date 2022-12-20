@@ -1,7 +1,7 @@
 import pygame
-from ui_classes.ui_element import UIElement
+from ui_classes.ui_element import UIElement, BorderBehavior
 from ui_classes.label import TextLabel
-from ui_classes.button import TextButton, HoverBorderColor
+from ui_classes.button import TextButton
 
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
@@ -24,7 +24,7 @@ text_label = TextLabel(pygame.Rect(220, 10, 200, 200),
 ui_elements.append(text_label)
 
 # Create TextButton
-hover_behavior = HoverBorderColor((0, 0, 255))
+hover_behavior = BorderBehavior((0, 255, 0), 5)
 text_button = TextButton(pygame.Rect(430, 10, 200, 200),
                          "Click Me",
                          pygame.font.Font(None, 100),

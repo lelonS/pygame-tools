@@ -66,6 +66,33 @@ def get_point_in_rect(rect: pygame.Rect, point: int = TOP_LEFT):
         raise ValueError('Invalid anchor position')
 
 
+class UIElementBehavior:
+    def enter(self, sender: 'UIElement'):
+        pass
+
+    def exit(self, sender: 'UIElement'):
+        pass
+
+
+class BorderBehavior(UIElementBehavior):
+    original_border_color: tuple[int, int, int]
+    original_border_width: int
+
+    def __init__(self, color: tuple[int, int, int], width: int):
+        self.color = color
+        self.width = width
+
+    def enter(self, sender: 'UIElement'):
+        self.original_border_color = sender.border_color
+        self.original_border_width = sender.border_width
+        sender.border_color = self.color
+        sender.border_width = self.width
+
+    def exit(self, sender: 'UIElement'):
+        sender.border_color = self.original_border_color
+        sender.border_width = self.original_border_width
+
+
 class UIElement:
     rect: pygame.Rect
     background_color: tuple[int, int, int]

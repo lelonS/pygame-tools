@@ -1,35 +1,12 @@
 import pygame
-from ui_classes.ui_element import UIElement, TOP_LEFT, CENTER, get_rect
+from ui_classes.ui_element import UIElement, TOP_LEFT, CENTER, get_rect, UIElementBehavior
 from ui_classes.label import TextLabel
-
-
-class HoverBehavior:
-    def on_hover(self, button: 'Button'):
-        pass
-
-    def on_unhover(self, button: 'Button'):
-        pass
-
-
-class HoverBorderColor(HoverBehavior):
-    og_border_color: tuple[int, int, int]
-    hover_border_color: tuple[int, int, int]
-
-    def __init__(self, hover_border_color: tuple[int, int, int]):
-        self.hover_border_color = hover_border_color
-
-    def on_hover(self, button: 'Button'):
-        self.og_border_color = button.border_color
-        button.border_color = self.hover_border_color
-
-    def on_unhover(self, button: 'Button'):
-        button.border_color = self.og_border_color
 
 
 class Button(UIElement):
     _hovered: bool
     on_click: callable
-    hover_behavior: HoverBehavior
+    hover_behavior: UIElementBehavior
 
     def __init__(self, rect: pygame.Rect, **kwargs):
         anchor = kwargs.get("anchor", TOP_LEFT)
@@ -49,12 +26,12 @@ class Button(UIElement):
                 if not self._hovered:
                     self._hovered = True
                     if self.hover_behavior:
-                        self.hover_behavior.on_hover(self)
+                        self.hover_behavior.enter(self)
             else:
                 if self._hovered:
                     self._hovered = False
                     if self.hover_behavior:
-                        self.hover_behavior.on_unhover(self)
+                        self.hover_behavior.exit(self)
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if self.rect.collidepoint(event.pos):
                 if self.on_click:
