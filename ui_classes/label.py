@@ -55,7 +55,7 @@ class TextLabel(UIElement):
         if self._text == "":
             return
 
-        h += 1000
+        h = self.rect.height * 2
         while w > self.rect.width or h > self.rect.height:
             self._font = pygame.font.Font(None, h - 1)
             r_text = self._font.render(self._text, True, self._text_color)

@@ -39,10 +39,11 @@ ui_elements.append(text_button)
 # Create TextBox
 text_box = TextBox(pygame.Rect(10, 220, 200, 200),
                    "Hello World",
-                   pygame.font.Font(None, 100),
+                   pygame.font.Font(None, 20),
                    border_width=2,
                    border_color=(255, 0, 0),
-                   background_color=(100, 0, 123))
+                   background_color=(100, 0, 123),
+                   focus_behavior=BorderBehavior((0, 255, 0), 5))
 
 ui_elements.append(text_box)
 
@@ -55,6 +56,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+    screen.fill((0, 0, 0))
     for element in ui_elements:
         element.draw(screen)
     pygame.display.update()
