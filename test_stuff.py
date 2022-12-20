@@ -2,6 +2,7 @@ import pygame
 from ui_classes.ui_element import UIElement, BorderBehavior
 from ui_classes.label import TextLabel
 from ui_classes.button import TextButton
+from ui_classes.text_box import TextBox
 
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
@@ -34,6 +35,16 @@ text_button = TextButton(pygame.Rect(430, 10, 200, 200),
                          border_color=(255, 0, 0),
                          background_color=(100, 0, 123))
 ui_elements.append(text_button)
+
+# Create TextBox
+text_box = TextBox(pygame.Rect(10, 220, 200, 200),
+                   "Hello World",
+                   pygame.font.Font(None, 100),
+                   border_width=2,
+                   border_color=(255, 0, 0),
+                   background_color=(100, 0, 123))
+
+ui_elements.append(text_box)
 
 # Game loop
 running = True

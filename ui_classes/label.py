@@ -51,8 +51,13 @@ class TextLabel(UIElement):
 
     def fit_text_to_rect(self):
         w, h = self._rendered_text.get_size()
+        r_text = self._rendered_text
+        if self._text == "":
+            return
+
+        h += 1000
         while w > self.rect.width or h > self.rect.height:
-            self._font = pygame.font.Font(None, self._font.get_height() - 1)
+            self._font = pygame.font.Font(None, h - 1)
             r_text = self._font.render(self._text, True, self._text_color)
             w, h = r_text.get_size()
         self._rendered_text = r_text
