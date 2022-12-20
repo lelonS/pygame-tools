@@ -30,7 +30,7 @@ text_button = TextButton(pygame.Rect(430, 10, 200, 200),
                          pygame.font.Font(None, 100),
                          hover_behavior=hover_behavior,
                          on_click=lambda button: print("Clicked!"),
-                         border_width=5,
+                         border_width=2,
                          border_color=(255, 0, 0),
                          background_color=(100, 0, 123))
 ui_elements.append(text_button)
